@@ -1,0 +1,22 @@
+name: $(Date:yyyyMMdd).$(Rev:r)
+# Pipeline is run on commits, tags PRs and master and dev branch
+trigger:
+  branches:
+    include:
+      - master
+      - dev
+
+# Run pipeline whenever a PR is raised
+pr:
+  branches:
+    include:
+      - '*'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: 'Build'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - template: 'template/build.yaml'
