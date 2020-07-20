@@ -4,6 +4,11 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "test" {
-  name     = "test-teraform_rg"
+  name     = "test-teraform_dev_rg"
   location = "australiaeast"
+
+  tags = {
+    Environment = "Dev"
+    Team        = "DevOps"
+  }
 }
